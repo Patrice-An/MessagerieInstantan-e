@@ -1,0 +1,36 @@
+-- Insertion des utilisateurs
+INSERT INTO User_ (Password, Mail, Nom, Prénom) VALUES
+('pass123', 'alice@mail.com', 'Dupont', 'Alice'),
+('pass456', 'bob@mail.com', 'Martin', 'Bob');
+
+-- Insertion du groupe
+INSERT INTO Groupe (NomGroupe) VALUES
+('Groupe Principal');
+
+-- Les deux utilisateurs appartiennent au groupe 1
+INSERT INTO Appartenir (IdUser, IdGroupe) VALUES
+(1, 1),
+(2, 1);
+
+-- Insertion de 20 messages alternés entre les deux utilisateurs
+INSERT INTO Message (DateMesssage, Contenu, IdGroupe, IdUser) VALUES
+('2026-02-25 10:00:00', 'Salut Bob !', 1, 1),
+('2026-02-25 10:01:00', 'Salut Alice, ça va ?', 1, 2),
+('2026-02-25 10:02:00', 'Oui super et toi ?', 1, 1),
+('2026-02-25 10:03:00', 'Ça va très bien merci.', 1, 2),
+('2026-02-25 10:04:00', 'Tu travailles sur le projet ?', 1, 1),
+('2026-02-25 10:05:00', 'Oui je suis dessus.', 1, 2),
+('2026-02-25 10:06:00', 'Parfait 👍', 1, 1),
+('2026-02-25 10:07:00', 'On avance bien.', 1, 2),
+('2026-02-25 10:08:00', 'Il faudra tester après.', 1, 1),
+('2026-02-25 10:09:00', 'Oui on fera ça.', 1, 2),
+('2026-02-25 10:10:00', 'Tu peux push sur le repo ?', 1, 1),
+('2026-02-25 10:11:00', 'Oui dans 5 minutes.', 1, 2),
+('2026-02-25 10:12:00', 'Merci !', 1, 1),
+('2026-02-25 10:13:00', 'C’est fait.', 1, 2),
+('2026-02-25 10:14:00', 'Je regarde ça.', 1, 1),
+('2026-02-25 10:15:00', 'Dis-moi si tout est ok.', 1, 2),
+('2026-02-25 10:16:00', 'Oui tout fonctionne.', 1, 1),
+('2026-02-25 10:17:00', 'Super 👍', 1, 2),
+('2026-02-25 10:18:00', 'On déploie ce soir ?', 1, 1),
+('2026-02-25 10:19:00', 'Oui bonne idée.', 1, 2);

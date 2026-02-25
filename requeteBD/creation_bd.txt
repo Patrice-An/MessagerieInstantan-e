@@ -1,0 +1,33 @@
+CREATE TABLE User_(
+   IdUser INT AUTO_INCREMENT,
+   Password VARCHAR(50) ,
+   Mail VARCHAR(50) ,
+   Nom VARCHAR(50) ,
+   Prénom VARCHAR(50) ,
+   PRIMARY KEY(IdUser)
+);
+
+CREATE TABLE Groupe(
+   IdGroupe INT AUTO_INCREMENT,
+   NomGroupe VARCHAR(50) ,
+   PRIMARY KEY(IdGroupe)
+);
+
+CREATE TABLE Message(
+   IdMessage INT AUTO_INCREMENT,
+   DateMesssage DATETIME NOT NULL,
+   Contenu VARCHAR(500) ,
+   IdGroupe INT NOT NULL,
+   IdUser INT NOT NULL,
+   PRIMARY KEY(IdMessage),
+   FOREIGN KEY(IdGroupe) REFERENCES Groupe(IdGroupe),
+   FOREIGN KEY(IdUser) REFERENCES User_(IdUser)
+);
+
+CREATE TABLE Appartenir(
+   IdUser INT,
+   IdGroupe INT,
+   PRIMARY KEY(IdUser, IdGroupe),
+   FOREIGN KEY(IdUser) REFERENCES User_(IdUser),
+   FOREIGN KEY(IdGroupe) REFERENCES Groupe(IdGroupe)
+);
