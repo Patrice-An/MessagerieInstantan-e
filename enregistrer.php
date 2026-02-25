@@ -1,3 +1,4 @@
 <?php
-    require_once("..");
+    require_once("./modele/connexion_sql.php");
+    
 ?>
