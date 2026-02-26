@@ -1,0 +1,12 @@
+.centre_ecran {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  background-color: blue;
+  border-top : 20 px;
+  border-bottom : 20 px;
+  border-left : 20 px;
+  border-right : 20 px;
+}
