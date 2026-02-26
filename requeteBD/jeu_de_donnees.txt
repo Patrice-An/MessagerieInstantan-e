@@ -1,19 +1,19 @@
 -- Insertion des utilisateurs
-INSERT INTO User_ (Password, Mail, Nom, Prénom) VALUES
+INSERT INTO Utilisateur (PASSWORD, MAIL, NOM, PRENOM) VALUES
 ('pass123', 'alice@mail.com', 'Dupont', 'Alice'),
 ('pass456', 'bob@mail.com', 'Martin', 'Bob');
 
 -- Insertion du groupe
-INSERT INTO Groupe (NomGroupe) VALUES
+INSERT INTO Groupe (NOMGROUPE) VALUES
 ('Groupe Principal');
 
 -- Les deux utilisateurs appartiennent au groupe 1
-INSERT INTO Appartenir (IdUser, IdGroupe) VALUES
+INSERT INTO Appartenir (IDUTILISATEUR, IDGROUPE) VALUES
 (1, 1),
 (2, 1);
 
 -- Insertion de 20 messages alternés entre les deux utilisateurs
-INSERT INTO Message (DateMesssage, Contenu, IdGroupe, IdUser) VALUES
+INSERT INTO Message (DATEMESSAGE, CONTENU, IDGROUPE, IDUTILISATEUR) VALUES
 ('2026-02-25 10:00:00', 'Salut Bob !', 1, 1),
 ('2026-02-25 10:01:00', 'Salut Alice, ça va ?', 1, 2),
 ('2026-02-25 10:02:00', 'Oui super et toi ?', 1, 1),
