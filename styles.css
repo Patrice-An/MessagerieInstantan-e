@@ -1,3 +1,5 @@
+/*TODO: S'occuper des couleurs du site*/
+
 
 html, body {
   height: 100%;
@@ -27,9 +29,9 @@ main{
 #Discussion {
   height: 90%;
   background-color: aqua;
+  display: flex;
+  flex-direction: column;
 }
-
-
 
 #ecrire{
   height: 10%;
@@ -48,55 +50,52 @@ form input{
 }
 form button{
   height: 80%;
-  width: 5%;
+  width: 10%;
 }
 
 
-
-
-
-
-
 .sidebar-navigation {
-  display: inline-block;
-  min-height: 100vh;
-  width: 80px;
+  width: 20%;
+  height: 100%;
   background-color: antiquewhite;
   float: left;
   
   ul {
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
+    list-style-type: none;
     
     li {
       padding: 28px 0;
-      cursor: pointer;
-      transition: all ease-out 120ms;
-      
+      border: solid;
+      border-color: black;
+      margin-right: 5%;
       i {
         display: block;
         font-size: 24px;
 
         transition: all ease 450ms;
-      }
-      
-      .tooltip {
-        display: inline-block;
-        position: absolute;
-        background-color: whitesmoke;
-        padding: 8px 15px;
-        border-radius: 3px;
-        margin-top: -26px;
-        left: 90px;
-        opacity: 0;
-        visibility: hidden;
-        font-size: 13px;
-        letter-spacing: .5px;
-      }
-      
-      
-      
-      		
+      }   		
     }
   }
 }
+
+
+.message{
+  border: solid;
+  border-radius: 5%;
+  border-color: black;
+  margin-left: 5%;
+  margin-right: 50%;
+  margin-top: 5%;
+}
+
+.messDe{
+  color: navy;
+}
+
+.messInfo{
+  width: 100%;
+  color: grey
+}
+

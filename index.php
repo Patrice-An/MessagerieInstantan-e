@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -17,11 +13,11 @@
         <form>
             <div name="login">
                 <h5>Login</h5>
-                <input type="text" />
+                <input type="text" required>
             </div>
             <div name="password">
                 <h5>Password</h5>
-                <input type="password" name="Password" required><br />
+                <input type="password" name="Password" required><br>
             </div>
         </form>
     </div>
