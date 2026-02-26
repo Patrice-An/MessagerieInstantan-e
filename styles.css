@@ -1,3 +1,16 @@
+
+html, body {
+  height: 100%;
+}
+
+header{
+  height: 10%;
+} 
+
+main{
+  height: 100%;
+}
+
 .centre_ecran {
   display: flex;
   justify-content: center;
@@ -9,4 +22,81 @@
   border-bottom : 20 px;
   border-left : 20 px;
   border-right : 20 px;
+}
+
+#Discussion {
+  height: 90%;
+  background-color: aqua;
+}
+
+
+
+#ecrire{
+  height: 10%;
+  background-color: orange;
+}
+
+form{
+  margin-left: 5%;
+  align-content: center;
+  height: 100%;
+}
+
+form input{
+  height: 80%;
+  width: 70%;
+}
+form button{
+  height: 80%;
+  width: 5%;
+}
+
+
+
+
+
+
+
+.sidebar-navigation {
+  display: inline-block;
+  min-height: 100vh;
+  width: 80px;
+  background-color: antiquewhite;
+  float: left;
+  
+  ul {
+    text-align: center;
+    color: white;
+    
+    li {
+      padding: 28px 0;
+      cursor: pointer;
+      transition: all ease-out 120ms;
+      
+      i {
+        display: block;
+        font-size: 24px;
+
+        transition: all ease 450ms;
+      }
+      
+      .tooltip {
+        display: inline-block;
+        position: absolute;
+        background-color: whitesmoke;
+        padding: 8px 15px;
+        border-radius: 3px;
+        margin-top: -26px;
+        left: 90px;
+        opacity: 0;
+        visibility: hidden;
+        font-size: 13px;
+        letter-spacing: .5px;
+      }
+      
+      
+      
+      		
+    }
+  }
 }
