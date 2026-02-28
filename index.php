@@ -10,7 +10,7 @@
 
 <body>
     <div class="centre_ecran" name="box_formulaire">
-        <form>
+        <form onsubmit="modele/createSession.php">
             <div name="login">
                 <h5>Login</h5>
                 <input type="text" required>
@@ -19,6 +19,8 @@
                 <h5>Password</h5>
                 <input type="password" name="Password" required><br>
             </div>
+
+            <input type="submit" value="Valider" id="ValidationConnexion">
         </form>
     </div>
 </body>
