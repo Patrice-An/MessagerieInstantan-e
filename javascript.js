@@ -6,7 +6,7 @@ $(document).ready(function() {
     });
 
     $("form").on("submit", function (e) {
-            e.preventDefault();
+            envoyerMessage();
     });
 
     reload();
@@ -17,25 +17,17 @@ $(document).ready(function() {
     Modifier ICI par la requete PHP
     */
    $(".User").html("Mathieu");
-   afficherMessage();
-    
+   recupererMessage();
 });
 
 
-function afficherMessage(){
+function afficherMessage(value){
     let text = "";
-    /*
-    TODO RENDRE LE MODEL FONCTIONNEL AVEC LA BD
+    //TODO RENDRE LE MODEL FONCTIONNEL AVEC LA BD
+    
    
-    */
     text +='<div class="message"> <span class="messDe">Mathieu</span><br> Coucou comment tu vas<br> <span class="messInfo">12h30</span></div>';
-
-
-
-
     $('#Discussion').html(text);
-
-
 }
 
 function afficherGroupe(){
@@ -50,9 +42,9 @@ function afficherGroupe(){
 }
 
 
-function reload(){
-    /*TODO Implémenter Reload */
-    setInterval()
+async function reload() {
+    
+
 }
 
 function getXhr() {
@@ -73,8 +65,8 @@ function getXhr() {
 }
 
 /*TODO Change cette méthode*/ 
-function ChargerLivres() {
-    param = document.getElementById('choixAuteur').value;
+function envoyerMessage() {
+    groupe = document.getElementById('groupe').value;
     var xhr = getXhr();
     // On défini ce qu'on va faire quand on aura la réponse
     xhr.onreadystatechange = function() {
@@ -82,11 +74,27 @@ function ChargerLivres() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             value = xhr.responseText;
             value = JSON.parse(value);
-            AfficherLivres(value);
+            afficherMessage(value);
         }
     }
-    xhr.open("GET", "req.php?id="+ param, true);
-    xhr.send(null);
+    xhr.open("POST", "modele/enregistrer.php", true);
+    xhr.send(data);
 }
 
+function recupererMessage(){
+    groupe = document.getElementById('groupe').value;
+        var xhr = getXhr();
+        // On défini ce qu'on va faire quand on aura la réponse
+        xhr.onreadystatechange = function() {
+            //Traitement seulement si on a tout reçu et que la réponse est ok
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                value = xhr.responseText;
+                value = JSON.parse(value);
+                afficherMessage(value);
+                alert("fin de transmission");
+            }
+        }
+        xhr.open("GET", "modele/.php?groupe=" + groupe, true);
+        xhr.send();
+}
 

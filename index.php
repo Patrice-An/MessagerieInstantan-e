@@ -10,14 +10,14 @@
 
 <body>
     <div class="centre_ecran" name="box_formulaire">
-        <form onsubmit="modele/createSession.php">
+        <form method="POST" action="modele/createSession.php">
             <div name="login">
                 <h5>Login</h5>
-                <input type="text" required>
+                <input type="text" name="login" required>
             </div>
             <div name="password">
                 <h5>Password</h5>
-                <input type="password" name="Password" required><br>
+                <input type="password" name="password" required><br>
             </div>
 
             <input type="submit" value="Valider" id="ValidationConnexion">

@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <button>Logout</button>
+        <button><a href="modele/deleteSession.php">logout</a></button>
         Connecter en tant que <span class="User"></span>
     </header>
     <nav class="sidebar-navigation">
@@ -24,7 +24,6 @@
     </nav>
     <main>
         <div id="Discussion">
-            
         </div>
         <div id="ecrire">
             <form action="">
@@ -33,9 +32,6 @@
             </form>
         </div>
     </main>
-
-   
-    
 </body>
 
 </html>

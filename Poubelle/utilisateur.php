@@ -1,7 +1,6 @@
 <?php
 class Utilisateur
 {
-
     private int $idUtilisateur;
     private string $mail;
     private string $nom;
