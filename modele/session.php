@@ -1,10 +1,9 @@
 <?php
-session_start();
+session_start(); 
 
-if (isset($_SESSION['id'])) {
-    echo "Bonjour " . $_SESSION['id'];
-} else {
+if (!isset($_SESSION['Id'])) {
     echo "Veuillez vous connecter d'abord";
-}
+    header("Location: ../index.php");
+} 
 
 ?>

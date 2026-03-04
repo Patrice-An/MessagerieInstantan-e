@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php 
-    
-?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,19 +14,20 @@
     <header>
         <button><a href="modele/deleteSession.php">logout</a></button>
         Connecter en tant que <span class="User"></span>
+       
     </header>
     <nav class="sidebar-navigation">
         <ul id="listeGroupe">
-            <li> TEST</li>
+            
         </ul>
     </nav>
     <main>
         <div id="Discussion">
         </div>
         <div id="ecrire">
-            <form action="">
+            <form onSubmit="">
                 <input type="text" placeholder="Votre Message" id="message"> 
-                <button type="submit">Envoyer</button>
+                <button id="B_message">Envoyer</button>
             </form>
         </div>
     </main>

@@ -1,22 +1,25 @@
 $(document).ready(function() {
     $("#message").keypress(function(e) {
         if(e.which == 13) {
+            //TODO Changer cette ligne
             alert('Entrée !!');
+
         }
     });
-
     $("form").on("submit", function (e) {
+            e.preventDefault();
+    });
+    //Bouton envoyé message
+    $("#B_message").on("click",function (e) {
             envoyerMessage();
     });
 
-    reload();
 
-    
-    /*
-    TODO
-    Modifier ICI par la requete PHP
-    */
-   $(".User").html("Mathieu");
+    token = document.cookie;
+    alert(token);
+    data = dechiffrerCookie(token);
+   
+   
    recupererMessage();
 });
 
@@ -98,3 +101,10 @@ function recupererMessage(){
         xhr.send();
 }
 
+function dechiffrerCookie(token){
+    payload = token.split(".")[1];
+    payloadDecode = atob(payload);
+    data = JSON.parse(payloadDecode);   
+    alert(data);
+    return data;
+}
