@@ -10,7 +10,7 @@ if ($User){
     $token = generate_jwt($authheader, $payload, $secret);
     base64url_encode($token);
     setcookie("token",$token,["path" => "/"]);
-    header("Location: ../afficher.php");
+    header("Location: ../afficher.html");
     exit();
 }
 else{
