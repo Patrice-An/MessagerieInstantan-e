@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    var token = document.cookie;
+    var data = dechiffrerCookie(token);
+    groupe = 1;
     $("#message").keypress(function(e) {
         if(e.which == 13) {
             envoyerMessage();   
@@ -13,28 +16,30 @@ $(document).ready(function() {
     });
 
 
-    var token = document.cookie;
-    var data = dechiffrerCookie(token);
+    $("#SessionDe").html(data["NOM"] +" "+ data["PRENOM"]);
     getAllGroupes(data["IDUTILISATEUR"]);
-  
+    recupererMessage(groupe);
    //recupererMessage();
 });
 
 
-function afficherMessage(id){
+function afficherMessage(values){
     let text = "";
     
     //TODO RENDRE LE MODEL FONCTIONNEL AVEC LA BD
-    
+    values.forEach(element => { 
+        text +='<div class="message"> <span class="messDe">'+ element["NOM"]+ " " + element["PRENOM"] +'</span><br>'+ element["CONTENU"] +'<br> <span class="messInfo">'+ element["DATEMESSAGE"] +'</span></div>';
+    });
    
-    text +='<div class="message"> <span class="messDe">Mathieu</span><br> Coucou comment tu vas<br> <span class="messInfo">12h30</span></div>';
+
+
     $('#Discussion').html(text);
 }
 
 function afficherGroupe(groupes){
     let text = "";
     groupes.forEach(element => {
-        text = text + "<li value="+ element["idGroupe"] +">"+ element["NOMGROUPE"] +"</li>";
+        text = text + "<li value="+ element["idGroupe"] +"><button>"+ element["NOMGROUPE"] +"</button></li>";
     });
     $('#listeGroupe').html(text);
 }
@@ -46,9 +51,16 @@ async function reload() {
 
 
 
+/******************************* \/
+*
+*
+    Fonctions XHR
+*
+*
+***********************************/
 
-function recupererMessage(){
-    groupe = document.getElementById('message').value;
+
+function recupererMessage(groupe){
     var xhr = getXhr();
     // On défini ce qu'on va faire quand on aura la réponse
     xhr.onreadystatechange = function() {
@@ -56,9 +68,10 @@ function recupererMessage(){
         if (xhr.readyState == 4 && xhr.status == 200) {
                 value = xhr.responseText;
                 value = JSON.parse(value);
+                afficherMessage(value);
             }
         }
-        xhr.open("GET", "modele/.php?groupe=" + groupe, true);
+        xhr.open("GET", "modele/recupererMessage.php?groupe=" + groupe, true);
         xhr.send();
 }
     
@@ -93,7 +106,6 @@ function envoyerMessage() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             value = xhr.responseText;
             value = JSON.parse(value);
-            return value;
         }
     }
     xhr.open("POST", "modele/enregistrer.php", true);

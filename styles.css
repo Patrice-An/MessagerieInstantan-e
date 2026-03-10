@@ -1,8 +1,12 @@
 /*TODO: S'occuper des couleurs du site*/
+html{
+  height: 100vh;
+  margin: 0;
+}
 
-
-html, body {
+body {
   height: 100%;
+  margin: 0;
 }
 
 header{
@@ -31,6 +35,7 @@ main{
   background-color: aqua;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 #ecrire{

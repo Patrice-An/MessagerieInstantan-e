@@ -17,7 +17,7 @@ function getAllMessages($groupe){
 function get10DernierMessages($groupe){
     $bd = Connexion::getConnexion();
     
-    $request = $bd->getPdo()->prepare("Select * From Message where IdGroupe = :id ORDER ORDER BY DateMessage DESC LIMIT 10;");
+    $request = $bd->getPdo()->prepare("Select * From Message where IdGroupe = :id ORDER BY DateMessage DESC LIMIT 10;");
     $request->bindParam(':id', $groupe);
 
     $request->execute();
