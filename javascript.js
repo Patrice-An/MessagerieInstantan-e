@@ -1,10 +1,11 @@
 $(document).ready(function() {
     var token = document.cookie;
     var data = dechiffrerCookie(token);
-    groupe = 1;
+    var groupe = 1;
     $("#message").keypress(function(e) {
         if(e.which == 13) {
-            envoyerMessage();   
+            envoyerMessage(groupe, $("#message").val());
+            $("#message").val("");
         }
     });
     $("form").on("submit", function (e) {
@@ -12,15 +13,21 @@ $(document).ready(function() {
     });
     //Bouton envoyé message
     $("#B_message").on("click",function (e) {
-            envoyerMessage();
+          envoyerMessage(groupe, $("#message").text());
+          $("#message").val("");
     });
+    
 
 
     $("#SessionDe").html(data["NOM"] +" "+ data["PRENOM"]);
     getAllGroupes(data["IDUTILISATEUR"]);
     recupererMessage(groupe);
-   //recupererMessage();
 });
+
+function ChangementDeGroupe(idGroupe){
+    groupe = idGroupe;
+    recupererMessage(idGroupe);
+}
 
 
 function afficherMessage(values){
@@ -30,8 +37,6 @@ function afficherMessage(values){
     values.forEach(element => { 
         text +='<div class="message"> <span class="messDe">'+ element["NOM"]+ " " + element["PRENOM"] +'</span><br>'+ element["CONTENU"] +'<br> <span class="messInfo">'+ element["DATEMESSAGE"] +'</span></div>';
     });
-   
-
 
     $('#Discussion').html(text);
 }
@@ -39,7 +44,7 @@ function afficherMessage(values){
 function afficherGroupe(groupes){
     let text = "";
     groupes.forEach(element => {
-        text = text + "<li value="+ element["idGroupe"] +"><button>"+ element["NOMGROUPE"] +"</button></li>";
+        text = text + "<li ><button onclick=ChangementDeGroupe(" + element["idGroupe"] +")>"+ element["NOMGROUPE"] +"</button></li>";
     });
     $('#listeGroupe').html(text);
 }
@@ -47,6 +52,21 @@ function afficherGroupe(groupes){
 
 async function reload() {
     
+}
+
+function recupererDernierMessage(groupe, dateMessage){
+    var xhr = getXhr();
+    // On défini ce qu'on va faire quand on aura la réponse
+    xhr.onreadystatechange = function() {
+        //Traitement seulement si on a tout reçu et que la réponse est ok
+        if (xhr.readyState == 4 && xhr.status == 200) {
+                value = xhr.responseText;
+                value = JSON.parse(value);
+                afficherMessage(value);
+            }
+        }
+    xhr.open("GET", "modele/recupererDernierMessage.php?groupe=" + groupe +"?dateMess=" +dateMessage, true);
+    xhr.send();
 }
 
 
@@ -97,19 +117,23 @@ function getAllGroupes(idUser) {
     xhr.send();
 }
     /*TODO Change cette méthode*/ 
-function envoyerMessage() {
-    groupe = document.getElementById('groupe').value;0
+function envoyerMessage(groupe, content) {
+    idUser = data["IDUTILISATEUR"];
+    datas = { "idUser" : idUser,
+        "groupe": groupe,
+        "content" : content
+        };
+    datas = JSON.stringify(datas);
     var xhr = getXhr();
     // On défini ce qu'on va faire quand on aura la réponse
     xhr.onreadystatechange = function() {
         //Traitement seulement si on a tout reçu et que la réponse est ok
         if (xhr.readyState == 4 && xhr.status == 200) {
-            value = xhr.responseText;
-            value = JSON.parse(value);
+            alert("Message envoyé");
         }
     }
     xhr.open("POST", "modele/enregistrer.php", true);
-    xhr.send(data);
+    xhr.send(datas);
 }
 
 function getXhr() {
