@@ -1,7 +1,8 @@
+var groupe = 1;
 $(document).ready(function() {
     var token = document.cookie;
     var data = dechiffrerCookie(token);
-    var groupe = 1;
+    
     $("#message").keypress(function(e) {
         if(e.which == 13) {
             e.preventDefault();
@@ -27,7 +28,7 @@ $(document).ready(function() {
     getAllGroupes(data["IDUTILISATEUR"]);
     recupererMessage(groupe);
 
-    setInterval(reload,1000,groupe);
+    setInterval(reload,1000);
 
   
 });
@@ -61,7 +62,7 @@ function afficherGroupe(groupes){
 }
 
 
-async function reload(groupe) {
+async function reload() {
     //TODO enlever ce bloc
     dateMessage = $('.message .messInfo:last').text();
     recupererDernierMessage(groupe, dateMessage);
