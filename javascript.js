@@ -4,8 +4,11 @@ $(document).ready(function() {
     var groupe = 1;
     $("#message").keypress(function(e) {
         if(e.which == 13) {
+            e.preventDefault();
+            if ($("#message").val() == null || $("#message").val() == ""){}
             envoyerMessage(groupe, $("#message").val());
             $("#message").val("");
+            reload(groupe);
         }
     });
     $("form").on("submit", function (e) {
@@ -13,32 +16,40 @@ $(document).ready(function() {
     });
     //Bouton envoyé message
     $("#B_message").on("click",function (e) {
-          envoyerMessage(groupe, $("#message").text());
-          $("#message").val("");
+        e.preventDefault();
+        if ($("#message").val() == null || $("#message").val() == ""){}
+        envoyerMessage(groupe, $("#message").val());
+        $("#message").val("");
+        reload();
     });
     
-
-
     $("#SessionDe").html(data["NOM"] +" "+ data["PRENOM"]);
     getAllGroupes(data["IDUTILISATEUR"]);
     recupererMessage(groupe);
+
+    setInterval(reload,1000,groupe);
+
+  
 });
 
 function ChangementDeGroupe(idGroupe){
     groupe = idGroupe;
+    $('#Discussion').html(" ");
+    alert(idGroupe);
     recupererMessage(idGroupe);
 }
 
 
 function afficherMessage(values){
     let text = "";
-    
-    //TODO RENDRE LE MODEL FONCTIONNEL AVEC LA BD
     values.forEach(element => { 
         text +='<div class="message"> <span class="messDe">'+ element["NOM"]+ " " + element["PRENOM"] +'</span><br>'+ element["CONTENU"] +'<br> <span class="messInfo">'+ element["DATEMESSAGE"] +'</span></div>';
     });
-
-    $('#Discussion').html(text);
+    if (text != ""){
+        $('#Discussion').html($('#Discussion').html() + text);
+        $("#Discussion").scrollTop($("#Discussion")[0].scrollHeight);
+    }
+   
 }
 
 function afficherGroupe(groupes){
@@ -50,8 +61,10 @@ function afficherGroupe(groupes){
 }
 
 
-async function reload() {
-    
+async function reload(groupe) {
+    //TODO enlever ce bloc
+    dateMessage = $('.message .messInfo:last').text();
+    recupererDernierMessage(groupe, dateMessage);
 }
 
 function recupererDernierMessage(groupe, dateMessage){
@@ -65,18 +78,18 @@ function recupererDernierMessage(groupe, dateMessage){
                 afficherMessage(value);
             }
         }
-    xhr.open("GET", "modele/recupererDernierMessage.php?groupe=" + groupe +"?dateMess=" +dateMessage, true);
+    xhr.open("GET", "modele/recupererDernierMessage.php?groupe=" + groupe +"&dateMess="+dateMessage, true);
     xhr.send();
 }
 
 
 
-/******************************* \/
-*
-*
-    Fonctions XHR
-*
-*
+/******************************* \/**
+*                                   *
+*                                   *
+*    Fonctions XHR                  *
+*                                   *
+*                                   *
 ***********************************/
 
 
@@ -89,6 +102,7 @@ function recupererMessage(groupe){
                 value = xhr.responseText;
                 value = JSON.parse(value);
                 afficherMessage(value);
+                $("#Discussion").scrollTop($("#Discussion")[0].scrollHeight);
             }
         }
         xhr.open("GET", "modele/recupererMessage.php?groupe=" + groupe, true);
@@ -116,24 +130,22 @@ function getAllGroupes(idUser) {
     xhr.open("GET", "modele/recupererGroupes.php?idUser="+ idUser , true);
     xhr.send();
 }
-    /*TODO Change cette méthode*/ 
+
+//TODO retester
 function envoyerMessage(groupe, content) {
     idUser = data["IDUTILISATEUR"];
-    datas = { "idUser" : idUser,
-        "groupe": groupe,
-        "content" : content
-        };
-    datas = JSON.stringify(datas);
-    var xhr = getXhr();
-    // On défini ce qu'on va faire quand on aura la réponse
-    xhr.onreadystatechange = function() {
-        //Traitement seulement si on a tout reçu et que la réponse est ok
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            alert("Message envoyé");
-        }
+    
+    datas = "idUser="+idUser +"&groupe="+ groupe + "&content=" +content;
+    
+    
+    $.ajax({
+    type: "POST",
+    url: "modele/enregistrer.php",
+    data: datas,
+    success: function () {
+        
     }
-    xhr.open("POST", "modele/enregistrer.php", true);
-    xhr.send(datas);
+    });
 }
 
 function getXhr() {
