@@ -1,10 +1,7 @@
 <?php
-require_once "requetes.php";
+//Recupère tout les messages d'un Groupe de discussion
 include_once "connexion_sql.php";
 
-
-
-//TODO html specialchars
 $groupe = $_GET['groupe'];
 $bd = Connexion::getConnexion();
 

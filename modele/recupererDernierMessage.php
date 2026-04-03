@@ -1,10 +1,7 @@
 <?php
-require_once "requetes.php";
 include_once "connexion_sql.php";
 
-
-
-//TODO html specialchars
+//récupère les nouveaux messages non affcihés
 $groupe = $_GET['groupe'];
 $dateMess = $_GET['dateMess'];
 $bd = Connexion::getConnexion();

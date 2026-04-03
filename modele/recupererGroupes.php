@@ -1,7 +1,7 @@
 <?php
+//Récupère la liste des groupes de l'utilisateur
 include_once "connexion_sql.php";
 
-//TODO html specialchars
 $idUser = $_GET['idUser'];
 
 $bd = Connexion::getConnexion();

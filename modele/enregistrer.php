@@ -1,10 +1,8 @@
 <?php
-    
-    require_once "requetes.php";
+
+//Enregistre dans la bd un message
     require_once "connexion_sql.php";
     
-    
-    //TODO html specialchars
     $idGroupe = $_POST['groupe'];
     $idUSer = $_POST['idUser'];
     $content = $_POST['content'];

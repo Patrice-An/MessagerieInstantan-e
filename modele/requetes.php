@@ -1,52 +1,7 @@
 <?php
 include 'connexion_sql.php';
 
-function getAllMessages($groupe){
-    $bd = Connexion::getConnexion();
-    
-    $request = $bd->getPdo()->prepare("Select * From Message where IdGroupe = :id ORDER BY DateMessage ASC;");
-    $request->bindParam(':id', $groupe);
-
-    $request->execute();
-    $result = $request->fetchAll(PDO::FETCH_ASSOC);
-
-    return $result;
-}
-
-
-function get10DernierMessages($groupe){
-    $bd = Connexion::getConnexion();
-    
-    $request = $bd->getPdo()->prepare("Select * From Message where IdGroupe = :id ORDER BY DateMessage DESC LIMIT 10;");
-    $request->bindParam(':id', $groupe);
-
-    $request->execute();
-    $result = $request->fetchAll(PDO::FETCH_ASSOC);
-
-    return $result;
-}
-
- 
-
-function getAllGroupe($idUser){
-    $bd = Connexion::getConnexion();
-    
-    $request = $bd->getPdo()->prepare("Select * From Appartenir where IdUser = :id;");
-    $request->bindParam(':id', $idUser);
-  
-
-    $request->execute();
-    $result = $request->fetchAll(PDO::FETCH_ASSOC);
-
-    return $result;
-}
-
-function Creergroupe(){
-
-
-    return null;
-}
-
+//Fonction qui vérifie si un user est dans un groupe
 function isInGroup($idUser, $idGroupe){
     $bd = Connexion::getConnexion();
     
@@ -60,6 +15,7 @@ function isInGroup($idUser, $idGroupe){
     return $result;
 }
 
+//Fonction qui vérifie si l'utilisateur et son mdp existe 
 function UserExistant($mail, $mdp){
     $bd = Connexion::getConnexion();
     
