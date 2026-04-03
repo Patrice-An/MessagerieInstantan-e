@@ -1,4 +1,4 @@
-/*TODO: S'occuper des couleurs du site*/
+/*TODO: Thème futuriste*/
 html{
   height: 100%;
   margin: 0;
@@ -7,100 +7,153 @@ html{
 body {
   height: 100%;
   margin: 0;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  color: #e2e8f0;
 }
 
+/* HEADER */
 header{
   height: 10%;
-} 
+  background: rgba(2, 6, 23, 0.9);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
 
+/* MAIN */
 main{
   height: 90%;
 }
 
+/* CENTRE */
 .centre_ecran {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 90%;
-  background-color: blue;
-  border-top : 20 px;
-  border-bottom : 20 px;
-  border-left : 20 px;
-  border-right : 20 px;
+  background: radial-gradient(circle, #0f172a, #020617);
 }
 
+/* DISCUSSION */
 #Discussion {
   height: 90%;
-  background-color: aqua;
+  background: rgba(15, 23, 42, 0.6);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  border-right: 1px solid rgba(56, 189, 248, 0.1);
 }
 
+/* SCROLLBAR */
+#Discussion::-webkit-scrollbar {
+  width: 6px;
+}
+#Discussion::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+  border-radius: 10px;
+}
+
+/* INPUT AREA */
 #ecrire{
   height: 10%;
-  background-color: orange;
+  background: rgba(2, 6, 23, 0.9);
+  border-top: 1px solid rgba(56, 189, 248, 0.2);
 }
 
+/* FORM */
 form{
   margin-left: 5%;
   align-content: center;
   height: 100%;
 }
 
+/* INPUT */
 form input{
   height: 80%;
   width: 70%;
+  background: rgba(255,255,255,0.05);
+  border: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  color: white;
+  outline: none;
+  transition: 0.3s;
 }
+
+form input:focus{
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+/* BUTTON */
 form button{
   height: 80%;
   width: 10%;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
+form button:hover{
+  box-shadow: 0 0 10px #38bdf8;
+  transform: scale(1.05);
+}
 
+/* SIDEBAR */
 .sidebar-navigation {
   width: 20%;
   height: 90%;
-  background-color: antiquewhite;
+  background: rgba(15, 23, 42, 0.7);
   float: left;
-  
-  ul {
-    text-align: center;
-    color: rgb(0, 0, 0);
-    list-style-type: none;
-    
-    li {
-      padding: 28px 0;
-      border: solid;
-      border-color: black;
-      margin-right: 5%;
-      i {
-        display: block;
-        font-size: 24px;
-
-        transition: all ease 450ms;
-      }   		
-    }
-  }
+  border-right: 1px solid rgba(56, 189, 248, 0.1);
 }
 
+/* ⚠️ correction CSS (pas de nesting) */
+.sidebar-navigation ul {
+  text-align: center;
+  color: #e2e8f0;
+  list-style-type: none;
+}
 
+.sidebar-navigation li {
+  padding: 28px 0;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  margin-right: 5%;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  transition: 0.3s;
+}
+
+.sidebar-navigation li:hover {
+  background: rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 10px #38bdf8;
+  transform: translateX(5px);
+}
+
+/* MESSAGE */
 .message{
-  border: solid;
-  border-radius: 5%;
-  border-color: black;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
   margin-left: 5%;
   margin-right: 50%;
   margin-top: 5%;
+  background: rgba(56, 189, 248, 0.05);
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.2);
+  padding: 10px;
 }
 
+/* TEXTE */
 .messDe{
-  color: navy;
+  color: #38bdf8;
+  font-size: 12px;
 }
 
 .messInfo{
   width: 100%;
-  color: grey
+  color: #94a3b8;
+  font-size: 10px;
 }
-
